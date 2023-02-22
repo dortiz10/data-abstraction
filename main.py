@@ -17,5 +17,20 @@ page = requests.get(url, headers=headers)
 soup = BeautifulSoup(page.content, 'html.parser')
 # print(soup.prettify())
 #get all books
-
+books = soup.find_all(id="gridItemRoot")
 #get info from first book
+# print(books[0])
+
+book = books[0]
+rank = book.find('span', class_='zg-bdg-text').text[1:]
+print(rank)
+
+children = book.find('div', class_='zg-grid-general-faceout').div
+children.contents[0]
+
+title= children.contents[1].text
+print(title)
+author = children.contents[2].text
+print(author)
+price = children.contents[-1].text
+print(price)
